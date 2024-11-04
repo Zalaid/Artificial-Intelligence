@@ -39,3 +39,30 @@ def generate_successors(node, target_state):
             successor_node = Node(new_state, node, move, node.cost_g + 1, h_cost)  
             successors.append(successor_node)  
     return successors  
+
+
+def a_star_search(start_state, target_state):  
+    open_set = []  
+    closed_set = set()  
+
+    start_node = Node(start_state, None, None, 0, manhattan_distance(start_state, target_state))  
+    heapq.heappush(open_set, start_node)  
+
+    while open_set:  
+        current_node = heapq.heappop(open_set)  
+
+        if current_node.state == target_state:  
+            path = []  
+            while current_node.parent:  
+                path.append(current_node)  
+                current_node = current_node.parent  
+            return path[::-1]  
+
+        closed_set.add(tuple(current_node.state))  
+
+        for successor in generate_successors(current_node, target_state):  
+            if tuple(successor.state) in closed_set:  
+                continue  
+            heapq.heappush(open_set, successor)  
+
+    return None  
