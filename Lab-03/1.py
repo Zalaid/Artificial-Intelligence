@@ -10,7 +10,7 @@ class Node:
         self.cost_f = cost_g + cost_h    #heusristic function
 
 
-         def __lt__(self, other):  
+    def __lt__(self, other):  
         return self.cost_f < other.cost_f  
 
 def manhattan_distance(current_state, target_state):  
