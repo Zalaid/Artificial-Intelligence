@@ -66,3 +66,26 @@ def a_star_search(start_state, target_state):
             heapq.heappush(open_set, successor)  
 
     return None  
+
+
+def print_puzzle(state):  
+    for i in range(0, 9, 3):  
+        print(state[i], state[i + 1], state[i + 2])  
+    print()  
+
+initial_state = [1, 2, 4, 3, 5, 6, 0, 8, 7]  
+target_state = [1, 2, 3, 4, 5, 6, 7, 8, 0]  
+
+solution = a_star_search(initial_state, target_state)  
+
+if solution:  
+    print("Solution found with A* Search:")  
+    # Print the initial state  
+    print("Initial state:")  
+    print_puzzle(initial_state)  
+
+    for step in solution:  
+        print("After moving:", step.move)  
+        print_puzzle(step.state)  
+else:  
+    print("No solution found.")
