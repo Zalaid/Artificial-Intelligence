@@ -31,3 +31,13 @@ class Minimax:
                 eval = self.minimax(child, depth + 1, True)
                 min_eval = min(min_eval, eval)
             return min_eval
+        
+    def best_move(self, state):
+        best_val = float('-inf')
+        best_move = None
+        for move in self.get_possible_moves(state):
+            move_val = self.minimax(move, 0, False)  
+            if move_val > best_val:
+                best_val = move_val
+                best_move = move
+        return best_move
