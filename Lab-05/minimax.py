@@ -13,3 +13,21 @@ class Minimax:
             return -1  
         else:
             return 0 
+        
+
+    def minimax(self, state, depth, maximizing_player):
+        if self.is_terminal(state):
+            return self.utility(state)
+
+        if maximizing_player:
+            max_eval = float('-inf')
+            for child in self.get_possible_moves(state):
+                eval = self.minimax(child, depth + 1, False)
+                max_eval = max(max_eval, eval)
+            return max_eval
+        else:
+            min_eval = float('inf')
+            for child in self.get_possible_moves(state):
+                eval = self.minimax(child, depth + 1, True)
+                min_eval = min(min_eval, eval)
+            return min_eval
