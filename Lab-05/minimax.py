@@ -43,7 +43,7 @@ class Minimax:
         return best_move
     
 
-     def check_for_winner(self, state):
+    def check_for_winner(self, state):
         for row in state:
             if row[0] == row[1] == row[2] != ' ':
                 return row[0]  
